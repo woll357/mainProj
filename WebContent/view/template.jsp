@@ -20,6 +20,8 @@
 		<tr>
 		<td><jsp:include page="inc/bottom.jsp" /></td>
 	</tr>
+이게 왜 안돼냐구우우웅
+
 	
 	
 </table>
