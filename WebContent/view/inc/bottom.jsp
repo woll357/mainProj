@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+발바닥
 </body>
 </html>

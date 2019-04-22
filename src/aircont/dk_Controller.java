@@ -1,23 +1,28 @@
 package aircont;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import di.MvcAction;
+import di.dk_MvcFoward_airHome;
+
 /**
- * Servlet implementation class F_Controller
+ * Servlet implementation class dk_Controller
  */
-@WebServlet("/greensc/*")
-public class F_Controller extends HttpServlet {
+@WebServlet("/airgreen/*")
+public class dk_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public F_Controller() {
+    public dk_Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +36,38 @@ public class F_Controller extends HttpServlet {
 		 * response.getWriter().append("Served at: ").append(request.getContextPath());
 		 */
 		
-		String service = request.getRequestURI();
+		String service = request.getRequestURI().substring("/testProj/airgreen/".length());
+		
 		System.out.println(service);
+		
+		/* request.setAttribute("TopUrl", "air/inc/top.jsp" ); */
+		
+		request.setAttribute("mainUrl", "air/"+service+".jsp" );
+		
+		/*
+		 * request.setAttribute("HomeUrl", "air/"+service+"top"+".jsp" );
+		 * request.setAttribute("MenuUrl", "air/inc/menu.jsp" );
+		 */
+		
+		
+		
+		try {
+			MvcAction action = (MvcAction)Class.forName("dk_service_p."+service).newInstance();
+			dk_MvcFoward_airHome foward = action.execute(request, response);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/template.jsp");
+			
+			dispatcher.forward(request, response);
+			
+		
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+		
 		
 	}
 

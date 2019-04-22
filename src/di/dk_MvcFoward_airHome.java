@@ -1,5 +1,5 @@
 package di;
 
-public class MacFoward {
+public class dk_MvcFoward_airHome {
 	public String mainUrl;
 }

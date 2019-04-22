@@ -7,23 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="">
+<table border="" width = 1500px height = 600px;>
 	<tr>
-		<td><jsp:include page="inc/top.jsp" /></td>
+		<td><jsp:include page="inc/top.jsp" /></td> 
 	</tr>
 	<tr>
 		<td><jsp:include page="inc/logo.jsp" /></td>
 	</tr>
 	<tr>
-		<td><jsp:include page="inc/body.jsp" /></td>
+		<td><jsp:include page="inc/subMenu.jsp" /></td>
+	</tr>
+	<tr>
+		<td><jsp:include page="${mainUrl }" /></td>
 	</tr>
 		<tr>
 		<td><jsp:include page="inc/bottom.jsp" /></td>
 	</tr>
-이게 왜 안돼냐구우우웅
-
-	
-	
 </table>
 </body>
 </html>
