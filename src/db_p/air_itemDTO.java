@@ -9,9 +9,19 @@ public class air_itemDTO {
 	Date ddate ;
 	String darea , carea , img , air_code , ap_code , ccode , flightclass;
 	Date a_time;
+	int money ,seatcnt , totseatcnt;
 	
 	
 	
+	
+	public int getTotseatcnt() {
+		return totseatcnt;
+	}
+
+	public void setTotseatcnt(int totseatcnt) {
+		this.totseatcnt = totseatcnt;
+	}
+
 	public Date getA_time() {
 		return a_time;
 	}
@@ -29,20 +39,28 @@ public class air_itemDTO {
 		}
 	}
 	
-	
 	public void setA_time(Date a_time) {
 		this.a_time = a_time;
 	}
 	
-	
-	
-	
-	
-	int money ,seatcnt;
-
 	public Date getDdate() {
 		return ddate;
 	}
+	
+	public String getDdateStr() {
+		return asd.format(ddate);
+	}
+	
+	public void setDdateStr(String ddateStr) {
+		try {
+			this.ddate = asd.parse(ddateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	public void setDdate(Date ddate) {
 		this.ddate = ddate;

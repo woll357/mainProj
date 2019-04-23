@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import db_p.airDAO;
 import db_p.air_itemDTO;
 import di.MvcAction;
-import di.dk_MvcFoward_airHome;
+import di.MvcForward;
 
 public class airap_codeReg implements MvcAction {
 
 	@Override
-	public dk_MvcFoward_airHome execute(HttpServletRequest request, HttpServletResponse response) {
+	public MvcForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("진입");

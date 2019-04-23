@@ -53,7 +53,7 @@ public class dk_Controller extends HttpServlet {
 		
 		try {
 			MvcAction action = (MvcAction)Class.forName("dk_service_p."+service).newInstance();
-			MvcForward foward = action.execute(request, response);
+			MvcForward fowrard = action.execute(request, response);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/template.jsp");
 			
