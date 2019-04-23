@@ -62,7 +62,7 @@ public class air_tempDTO { //회원등급요청 dto
 	}
 	
 	SimpleDateFormat asd = new SimpleDateFormat("yyyy-MM-dd");
-	
-	
+
+
 	
 }

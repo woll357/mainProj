@@ -1,6 +1,7 @@
 package dk_service_p;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,15 @@ public class airTempHomeReg implements MvcAction {
 		// TODO Auto-generated method stub
 	
 		System.out.println("진입");
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
+		
+		if(request.getParameter("grade")!="M") {
 		String path = request.getRealPath("/img");
 		
 		path = "D:\\mainWork\\testProj\\WebContent\\img";
@@ -42,8 +51,12 @@ public class airTempHomeReg implements MvcAction {
 			dto.setAir_name(mm.getParameter("air_name"));
 			dto.setGrade(mm.getFilesystemName("grade"));
 			
+			if(request.getParameter("grade")!="H") {
 			new airDAO().write(dto);
-		
+			}
+			else {
+				
+			}
 //			System.out.println(dto.getBid());
 			
 			/*
@@ -57,7 +70,7 @@ public class airTempHomeReg implements MvcAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		}
 		
 		return null;
 	}

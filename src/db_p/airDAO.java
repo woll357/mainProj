@@ -63,7 +63,6 @@ public class airDAO {
 
 	}
 	
-
 	
 	public air_itemDTO detail(String day , String darea , String carea , String ap_code ) {
 		
