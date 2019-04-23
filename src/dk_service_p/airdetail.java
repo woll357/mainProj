@@ -3,8 +3,8 @@ package dk_service_p;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db_p.airDAO;
-import db_p.air_itemDTO;
+import db_p.AirDAO;
+import db_p.Air_itemDTO;
 import di.MvcAction;
 import di.MvcForward;
 
@@ -17,12 +17,13 @@ public class airdetail implements MvcAction {
 		System.out.println("진입진입");
 		System.out.println(request.getParameter("ccode"));
 		
-		air_itemDTO dto = new air_itemDTO();
+		Air_itemDTO dto = new Air_itemDTO();
+		
 		dto.setCcode(request.getParameter("ccode"));
 		
-		airDAO dao = new airDAO();
+		AirDAO dao = new AirDAO();
 	
-	//	request.setAttribute("dto", dao.itemdetail(dto));
+		request.setAttribute("dto", dao.itemdetail(dto));
 		
 		
 		

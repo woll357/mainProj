@@ -1,7 +1,6 @@
 package dk_service_p;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import db_p.airDAO;
-import db_p.air_tempDTO;
+import db_p.AirDAO;
+import db_p.Air_tempDTO;
 import di.MvcAction;
 import di.MvcForward;
 
@@ -22,14 +21,6 @@ public class airTempHomeReg implements MvcAction {
 		// TODO Auto-generated method stub
 	
 		System.out.println("진입");
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
 		
 		String path = request.getRealPath("/img");
 		
@@ -44,19 +35,15 @@ public class airTempHomeReg implements MvcAction {
 					new DefaultFileRenamePolicy()
 					);
 			
-			air_tempDTO dto = new air_tempDTO();
+			Air_tempDTO dto = new Air_tempDTO();
 			dto.setId(mm.getParameter("id"));
 			dto.setCrn(mm.getParameter("crn"));
 			dto.setImg(mm.getParameter("img"));
 			dto.setAir_name(mm.getParameter("air_name"));
 			dto.setGrade(mm.getFilesystemName("grade"));
 			
-			if(request.getParameter("grade")!="H") {
-			new airDAO().write(dto);
-			}
-			else {
-				
-			}
+			new AirDAO().write(dto);
+		
 //			System.out.println(dto.getBid());
 			
 			/*

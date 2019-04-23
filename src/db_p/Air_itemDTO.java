@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class air_itemDTO {
+public class Air_itemDTO {
 	
 	Date ddate ;
 	String darea , carea , img , air_code , ap_code , ccode , flightclass;

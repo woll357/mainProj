@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class air_tempDTO { //회원등급요청 dto
+public class Air_tempDTO { //회원등급요청 dto
 	
 	
 	String crn , img , air_name,grade , id;

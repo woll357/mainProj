@@ -1,10 +1,12 @@
 package dk_service_p;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db_p.airDAO;
-import db_p.air_itemDTO;
+import db_p.AirDAO;
+import db_p.Air_itemDTO;
 import di.MvcAction;
 import di.MvcForward;
 
@@ -14,15 +16,25 @@ public class airap_codeReg implements MvcAction {
 	public MvcForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
+		//상품목록이다
+		
 		System.out.println("진입");
 		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		air_itemDTO dto = new air_itemDTO();
-		dto.setAp_code(request.getParameter("ap_code"));
+		Air_itemDTO dto = new Air_itemDTO();
+		String ccode = request.getParameter("ccode");
 		
-		airDAO dao = new airDAO();
+		dto.setAp_code(ccode);
 		
-		request.setAttribute("dto", dao.detail(request.getParameter("ap_code")));
+		AirDAO dao = new AirDAO();
+		
+		request.setAttribute("dto", dao.detail(ccode));
 	
 		
 		

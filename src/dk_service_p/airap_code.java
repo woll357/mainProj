@@ -3,7 +3,7 @@ package dk_service_p;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db_p.air_itemDTO;
+import db_p.Air_itemDTO;
 import di.MvcAction;
 import di.MvcForward;
 

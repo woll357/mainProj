@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class airDAO {
+public class AirDAO {
 	
 	
 	Connection con;
@@ -17,7 +17,7 @@ public class airDAO {
 	ResultSet rs;
 	String sql;
 	
-	public airDAO() {
+	public AirDAO() {
 		// TODO Auto-generated constructor stub
 		
 		DataSource ds;
@@ -33,7 +33,7 @@ public class airDAO {
 	}
 
 	
-	public void write(air_tempDTO dto) {
+	public void write(Air_tempDTO dto) {
 		
 		
 		try {
@@ -64,9 +64,45 @@ public class airDAO {
 	}
 	
 	
-	public air_itemDTO detail(String day , String darea , String carea , String ap_code ) {
+	public void insert(Air_itemDTO dto) {
+			
+			
+		try {
+			sql = "insert into air_item (ap_code, ddate, darea, img , air_code , carea , money, totseatcnt, flightclass , air_p ,ccode )" 
+			+ " values (                   ?   ,    ?  ,   ? ,'asiano.jpg', 'A1000', ? ,    ? ,       ? ,       ? ,      'jd100' ,'상품코드' )";
+				//                        비행기코드
+				
+				
+				ptmt = con.prepareStatement(sql);
+				ptmt.setString(1, dto.getAp_code());
+				ptmt.setString(2, dto.getDdateStr());
+				ptmt.setString(3, dto.getDarea());
+				ptmt.setString(4, dto.getCarea());
+				ptmt.setInt(5, dto.getMoney());
+				ptmt.setInt(6, dto.getTotseatcnt());
+				ptmt.setString(7, dto.getFlightclass());
+			//	ptmt.setString(8, dto.getAir_p());
+//				ptmt.setString(9, dto.getCcode());
+				
+				ptmt.executeUpdate();
+				
+			
+						
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				
+				close();
+			}
+	
+		}
+	
+
+	
+	public Air_itemDTO detail(String day , String darea , String carea , String ap_code ) {
 		
-		air_itemDTO res = null;
+		Air_itemDTO res = null;
 		
 		sql = "select * from air_item where date(ddate)>=date(?) and darea = ? and carea = ? and ap_code = ? ";
 		
@@ -80,7 +116,7 @@ public class airDAO {
 			rs = ptmt.executeQuery();
 			
 			if(rs.next()) {
-				res = new air_itemDTO();
+				res = new Air_itemDTO();
 				res.setDdate(rs.getTimestamp("ddate"));
 				res.setDarea(rs.getString("darea"));
 				res.setCarea(rs.getString("carea"));
@@ -156,10 +192,10 @@ public class airDAO {
 	
 	public Object detail(String a) {
 		
-		ArrayList<air_itemDTO> res = new ArrayList<air_itemDTO>();
+		ArrayList<Air_itemDTO> res = new ArrayList<Air_itemDTO>();
 			//air_itemDTO res = null;
 			
-			sql = "select * from air_item where ap_code = ? " ;
+			sql = "select * from air_item where ccode = ? " ;
 			
 			try {
 				ptmt = con.prepareStatement(sql);
@@ -170,7 +206,7 @@ public class airDAO {
 				
 				while(rs.next()) {
 					
-					air_itemDTO dto = new air_itemDTO();
+					Air_itemDTO dto = new Air_itemDTO();
 					
 					dto.setDdate(rs.getTimestamp("ddate"));
 					dto.setDarea(rs.getString("darea"));
@@ -211,6 +247,114 @@ public class airDAO {
 			       
 			return res;
 		}
+	
+	
+public Object air_pdetail(String a) {
+		
+		ArrayList<Air_itemDTO> res = new ArrayList<Air_itemDTO>();
+			//air_itemDTO res = null;
+			
+			sql = "select * from air_item where air_p = ? " ;
+			
+			try {
+				ptmt = con.prepareStatement(sql);
+				ptmt.setString(1, a);
+	
+				
+				rs = ptmt.executeQuery();
+				
+				while(rs.next()) {
+					
+					Air_itemDTO dto = new Air_itemDTO();
+					
+					dto.setDdate(rs.getTimestamp("ddate"));
+					dto.setDarea(rs.getString("darea"));
+					dto.setCarea(rs.getString("carea"));
+					dto.setAp_code(rs.getString("ap_code"));
+					dto.setCcode(rs.getString("ccode"));
+					dto.setMoney(rs.getInt("money"));
+					dto.setA_time(rs.getTimestamp("a_time"));
+					dto.setSeatcnt(rs.getInt("seatcnt"));
+					dto.setFlightclass(rs.getString("flightclass"));	
+					dto.setTotseatcnt(rs.getInt("totseatcnt"));
+				
+					
+					res.add(dto);
+					
+					
+//					res = new air_itemDTO();
+//					res.setDdate(rs.getTimestamp("ddate"));
+//					res.setDarea(rs.getString("darea"));
+//					res.setCarea(rs.getString("carea"));
+//					res.setImg(rs.getString("img"));
+//					res.setAp_code(rs.getString("ap_code"));
+//					res.setCcode(rs.getString("ccode"));
+//					res.setMoney(rs.getInt("money"));
+//					res.setA_time(rs.getTimestamp("a_time"));
+//					res.setSeatcnt(rs.getInt("seatcnt"));
+//					res.setFlightclass(rs.getString("flightclass"));	
+					
+				}
+						
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			
+			}finally {
+			   close();
+		  }
+			       
+			return res;
+		}
+	
+	
+	public void modify(Air_itemDTO dto) {
+	
+		
+		
+	try {
+		
+		sql = "update air_item set ap_code = ? , " + 
+				"ddate = ? ," + 
+				"darea = ? , " + 
+				"carea = ? ," + 
+				"money = ? ," + 
+				"totseatcnt = ? ," + 
+				"flightclass = ? ," + 
+				"where ccode =  ? ,";
+		
+		
+		ptmt = con.prepareStatement(sql);
+		
+		ptmt.setString(1, dto.getAp_code());
+		ptmt.setString(2, dto.getDdateStr());
+		ptmt.setString(3, dto.getDarea());
+		ptmt.setString(4, dto.getCarea());
+		ptmt.setInt(5, dto.getMoney());
+		ptmt.setInt(6, dto.getTotseatcnt());
+		ptmt.setString(7, dto.getFlightclass());
+		ptmt.setString(8, dto.getCcode());
+		
+
+		
+		//res = ptmt.executeUpdate() > 0; //익스큐트 없데이트가 1건 이상이여야 하기때문에 0이상이 되야 삭제됨 초기값은  false
+		
+		 ptmt.executeUpdate();
+		 
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		
+		close();
+	}
+	
+
+}
+	
+	
+	
+	
 	
 //	public Object itemdetail(String a) {
 //		
@@ -253,8 +397,8 @@ public class airDAO {
 //			return res;
 //		}
 	
-	public air_itemDTO itemdetail(air_itemDTO dto) {
-		air_itemDTO res = null;
+	public Air_itemDTO itemdetail(Air_itemDTO dto) {
+		Air_itemDTO res = null;
 		
 		sql = "select * from air_item where ccode = ? " ;
 		
@@ -264,7 +408,7 @@ public class airDAO {
 			rs = ptmt.executeQuery();
 			
 			if(rs.next()) {
-				res = new air_itemDTO();
+				res = new Air_itemDTO();
 				res.setDdate(rs.getTimestamp("ddate"));
 				res.setDarea(rs.getString("darea"));
 				res.setCarea(rs.getString("carea"));
