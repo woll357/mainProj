@@ -30,7 +30,7 @@ public class airTempHomeReg implements MvcAction {
 		}
 		
 		
-		if(request.getParameter("grade")!="M") {
+		
 		String path = request.getRealPath("/img");
 		
 		path = "D:\\mainWork\\testProj\\WebContent\\img";
@@ -70,7 +70,7 @@ public class airTempHomeReg implements MvcAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
+		
 		
 		return null;
 	}
