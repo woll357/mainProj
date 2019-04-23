@@ -1,4 +1,4 @@
-package aircont;
+package nh_cont;
 
 import java.io.IOException;
 
@@ -13,16 +13,16 @@ import di.MvcAction;
 import di.MvcForward;
 
 /**
- * Servlet implementation class dk_Controller
+ * Servlet implementation class F_Controller
  */
-@WebServlet("/airgreen/*")
-public class dk_Controller extends HttpServlet {
+@WebServlet("/greensc/*")
+public class nh_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public dk_Controller() {
+    public nh_Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,37 +36,18 @@ public class dk_Controller extends HttpServlet {
 		 * response.getWriter().append("Served at: ").append(request.getContextPath());
 		 */
 		
-		String service = request.getRequestURI().substring("/testProj/airgreen/".length());
-		
+		String service = request.getRequestURI().substring("/testProj/greensc/".length());
 		System.out.println(service);
-		
-		/* request.setAttribute("TopUrl", "air/inc/top.jsp" ); */
-		
-		request.setAttribute("mainUrl", "air/"+service+".jsp" );
-		
-		/*
-		 * request.setAttribute("HomeUrl", "air/"+service+"top"+".jsp" );
-		 * request.setAttribute("MenuUrl", "air/inc/menu.jsp" );
-		 */
-		
-		
-		
+		request.setAttribute("mainUrl", "greensc/"+service+".jsp");
 		try {
-			MvcAction action = (MvcAction)Class.forName("dk_service_p."+service).newInstance();
-			MvcForward foward = action.execute(request, response);
-			
+			MvcAction action = (MvcAction)Class.forName("nh_service_p."+service).newInstance();
+			MvcForward forward=action.execute(request, response);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/template.jsp");
-			
 			dispatcher.forward(request, response);
-			
-		
-		
-		} catch (Exception e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		
+		}
 		
 		
 	}

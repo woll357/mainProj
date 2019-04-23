@@ -1,5 +1,5 @@
 package di;
 
-public class dk_MvcFoward_airHome {
+public class MvcForward {
 	public String mainUrl;
 }
