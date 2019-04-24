@@ -59,7 +59,30 @@ public class SignUpDAO {
 		
 	}
 	
-	
+	public SignUpDTO chklogin(SignUpDTO dto) {
+		SignUpDTO res=null;
+		
+		try {
+			sql="select * from member where id=? and pw=?";
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.getId());
+			ptmt.setString(2, dto.getPw());
+			rs = ptmt.executeQuery();
+			
+			if(rs.next()) {
+			res = new SignUpDTO();
+			res.setId(rs.getString("id"));
+			res.setGrade(rs.getString("grade"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+
+		return res;
+	}
 	
 	
 	
