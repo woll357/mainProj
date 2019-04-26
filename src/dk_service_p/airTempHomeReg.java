@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import db_p.AirDAO;
+import db_p.Air_comDAO;
+import db_p.Air_tempDAO;
 import db_p.Air_tempDTO;
 import di.MvcAction;
 import di.MvcForward;
@@ -42,7 +43,7 @@ public class airTempHomeReg implements MvcAction {
 			dto.setAir_name(mm.getParameter("air_name"));
 			dto.setGrade(mm.getFilesystemName("grade"));
 			
-			new AirDAO().write(dto);
+			new Air_tempDAO().write(dto);
 		
 //			System.out.println(dto.getBid());
 			

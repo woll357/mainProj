@@ -1,4 +1,4 @@
-package aircont;
+package managercont;
 
 import java.io.IOException;
 
@@ -13,16 +13,16 @@ import di.MvcAction;
 import di.MvcForward;
 
 /**
- * Servlet implementation class dk_Controller
+ * Servlet implementation class airmanger_Controller
  */
-@WebServlet("/airgreen/*")
-public class dk_Controller extends HttpServlet {
+@WebServlet("/Manager/*")
+public class airmanger_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public dk_Controller() {
+    public airmanger_Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +36,15 @@ public class dk_Controller extends HttpServlet {
 		 * response.getWriter().append("Served at: ").append(request.getContextPath());
 		 */
 		
-		String service = request.getRequestURI().substring("/testProj/airgreen/".length());
+		String service = request.getRequestURI().substring("/odkproJ/Manager/".length());
 		
-		System.out.println(service);
-		
-		/* request.setAttribute("TopUrl", "air/inc/top.jsp" ); */
-		
-		request.setAttribute("mainUrl", "air/"+service+".jsp" );
-		request.setAttribute("subUrl", "air/subMenu.jsp");
-		request.setAttribute("topUrl", "air/top.jsp");
-		
-		/*
-		 * request.setAttribute("HomeUrl", "air/"+service+"top"+".jsp" );
-		 * request.setAttribute("MenuUrl", "air/inc/menu.jsp" );
-		 */
-		
+		request.setAttribute("mainUrl", "manager/"+service+".jsp" );
+		request.setAttribute("subUrl", "manager/subMenu.jsp");
 		
 		
 		try {
-			MvcAction action = (MvcAction)Class.forName("dk_service_p."+service).newInstance();
+			MvcAction action = (MvcAction)Class.forName("manager_p."+service).newInstance();
+			
 			MvcForward fowrard = action.execute(request, response);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/template.jsp");
@@ -62,15 +52,10 @@ public class dk_Controller extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		
-		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
-		
-		
-		
 	}
 
 	/**

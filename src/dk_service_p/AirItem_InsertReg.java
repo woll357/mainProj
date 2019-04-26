@@ -3,12 +3,12 @@ package dk_service_p;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db_p.AirDAO;
+import db_p.Air_itemDAO;
 import db_p.Air_itemDTO;
 import di.MvcAction;
 import di.MvcForward;
 
-public class airinsertReg implements MvcAction {
+public class AirItem_InsertReg implements MvcAction {
 
 	@Override
 	public MvcForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -26,10 +26,10 @@ public class airinsertReg implements MvcAction {
 		dto.setFlightclass(request.getParameter("flightclass"));
 		
 		
-		new AirDAO().insert(dto);
+		new Air_itemDAO().insert(dto);
 		
 		request.setAttribute("msg", "작성되었습니다");
-		request.setAttribute("goUrl", "airdetail?ccode="+dto.getCcode());
+		request.setAttribute("goUrl", "AirHomeMain");
 		request.setAttribute("mainUrl", "air/alert.jsp");
 		
 		

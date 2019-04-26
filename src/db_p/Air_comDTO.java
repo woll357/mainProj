@@ -1,6 +1,7 @@
 package db_p;
 
 public class Air_comDTO { //항공사 테이블
+	
 	String air_code , id , crn , img , air_name;
 
 	public String getAir_code() {

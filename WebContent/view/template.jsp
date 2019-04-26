@@ -7,21 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="" width = 1500px height = 600px;>
+<table border="" width = 1500px >
 	<tr>
-		<td><jsp:include page="inc/top.jsp" /></td> 
+		<td  height="50px"><jsp:include page="${topUrl }" /></td> 
 	</tr>
 	<tr>
-		<td><jsp:include page="inc/logo.jsp" /></td>
+		<td height="150px"><jsp:include page="inc/logo.jsp" /></td>
 	</tr>
 	<tr>
-		<td><jsp:include page="inc/subMenu.jsp" /></td>
+		<td height="50px"><jsp:include page="${subUrl }" /></td>
 	</tr>
 	<tr>
-		<td><jsp:include page="${mainUrl }" /></td>
+		<td height="500px"><jsp:include page="${mainUrl }" /></td>
 	</tr>
 		<tr>
-		<td><jsp:include page="inc/bottom.jsp" /></td>
+		<td height="50px"><jsp:include page="inc/bottom.jsp" /></td>
 	</tr>
 </table>
 </body>
